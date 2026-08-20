@@ -20,6 +20,7 @@
   --card-padding: 16px;
   --cover-radius: 10px;
   --card-shadow: 0 2px 7.5px rgba(0, 0, 0, 0.05);
+  --card-shadow-hover: 0 6px 18px rgba(0, 0, 0, 0.07);
 
   /* type */
   --font-ui: "Manrope", sans-serif;
@@ -70,6 +71,11 @@ main {
   display: flex;
   flex-direction: column;
   gap: 14px;
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--card-shadow-hover);
 }
 
 /* --- cover --- */
