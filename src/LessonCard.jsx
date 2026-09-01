@@ -1,3 +1,6 @@
+import Chip from "./Chip.jsx";
+import Button from "./Button.jsx";
+
 /**
  * COVERS — everything that differs between the two card covers.
  *
@@ -68,8 +71,10 @@ const COVERS = {
  * @param dueDate     the date only, e.g. "Sep 1" — the "Due Date: " label lives here in the component
  * @param price       e.g. "$19" — falls back to "Free" when the prop is left off
  * @param variant     "html" or "css" — picks the cover from COVERS above
+ * @param buttonVariant passed straight to the Start lesson Button: "primary" or "ghost"
+ *                      (named separately because `variant` above already means the cover)
  */
-export default function LessonCard({ title, description, chip, dueDate, price = "Free", variant }) {
+export default function LessonCard({ title, description, chip, dueDate, price = "Free", variant, buttonVariant = "ghost" }) {
   const cover = COVERS[variant];
 
   return (
@@ -108,10 +113,11 @@ export default function LessonCard({ title, description, chip, dueDate, price = 
           <p className="card-description">{description}</p>
         </div>
         <div className="card-meta">
-          <span className="chip">{chip}</span>
+          <Chip label={chip} />
           <span className="price">{price}</span>
           <span className="due-date">Due Date: {dueDate}</span>
         </div>
+        <Button variant={buttonVariant}>Start lesson</Button>
       </div>
     </article>
   );
