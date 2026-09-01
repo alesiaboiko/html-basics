@@ -78,6 +78,11 @@ main {
   box-shadow: var(--card-shadow-hover);
 }
 
+/* a finished lesson fades back, so unfinished ones read first */
+.card-done {
+  opacity: 0.6;
+}
+
 /* --- cover --- */
 .card-cover {
   position: relative;

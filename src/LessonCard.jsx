@@ -73,12 +73,13 @@ const COVERS = {
  * @param variant     "html" or "css" — picks the cover from COVERS above
  * @param buttonVariant passed straight to the Start lesson Button: "primary" or "ghost"
  *                      (named separately because `variant` above already means the cover)
+ * @param isDone      true for a finished lesson — fades the card and relabels the chip "Done"
  */
-export default function LessonCard({ title, description, chip, dueDate, price = "Free", variant, buttonVariant = "ghost" }) {
+export default function LessonCard({ title, description, chip, dueDate, price = "Free", variant, buttonVariant = "ghost", isDone = false }) {
   const cover = COVERS[variant];
 
   return (
-    <article className="card">
+    <article className={isDone ? "card card-done" : "card"}>
       <div className={`card-cover ${cover.coverClass}`} role="img" aria-label={cover.label}>
         <div className="cover-title">
           <span className={cover.wordClass ? `cover-word ${cover.wordClass}` : "cover-word"}>
@@ -113,7 +114,7 @@ export default function LessonCard({ title, description, chip, dueDate, price = 
           <p className="card-description">{description}</p>
         </div>
         <div className="card-meta">
-          <Chip label={chip} />
+          <Chip label={isDone ? "Done" : chip} />
           <span className="price">{price}</span>
           <span className="due-date">Due Date: {dueDate}</span>
         </div>

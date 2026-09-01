@@ -11,6 +11,7 @@ export default function App() {
           chip="Code"
           dueDate="Sep 1"
           buttonVariant="primary"
+          isDone
         />
         <LessonCard
           variant="css"
