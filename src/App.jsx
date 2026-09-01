@@ -18,6 +18,13 @@ export default function App() {
           chip="Code"
           dueDate="Sep 1"
         />
+        <LessonCard
+          variant="css"
+          title="JSX Basics"
+          description="Turn your markup into reusable components"
+          chip="Code"
+          dueDate="Sep 15"
+        />
       </section>
     </main>
   );
