@@ -215,6 +215,9 @@ main {
   flex-direction: column;
   gap: 16px;
   width: 100%;
+  /* fill whatever height is left under the cover, so short cards
+     line up with tall ones in the same row */
+  flex: 1;
 }
 
 /* --- info --- */
@@ -244,6 +247,8 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  /* push this row to the bottom of card-content */
+  margin-top: auto;
 }
 
 .chip {
