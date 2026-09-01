@@ -66,9 +66,10 @@ const COVERS = {
  * @param description paragraph under the heading
  * @param chip        pink tag in the bottom-left, e.g. "Code"
  * @param dueDate     the date only, e.g. "Sep 1" — the "Due Date: " label lives here in the component
+ * @param price       e.g. "$19" — falls back to "Free" when the prop is left off
  * @param variant     "html" or "css" — picks the cover from COVERS above
  */
-export default function LessonCard({ title, description, chip, dueDate, variant }) {
+export default function LessonCard({ title, description, chip, dueDate, price = "Free", variant }) {
   const cover = COVERS[variant];
 
   return (
@@ -108,6 +109,7 @@ export default function LessonCard({ title, description, chip, dueDate, variant 
         </div>
         <div className="card-meta">
           <span className="chip">{chip}</span>
+          <span className="price">{price}</span>
           <span className="due-date">Due Date: {dueDate}</span>
         </div>
       </div>

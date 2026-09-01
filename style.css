@@ -255,7 +255,9 @@ main {
   border-radius: 8px;
 }
 
-.due-date {
+/* price sits between the chip and the due date, and reads the same way */
+.due-date,
+.price {
   font-size: 12px;
   line-height: 18px;
   color: var(--text-tertiary);

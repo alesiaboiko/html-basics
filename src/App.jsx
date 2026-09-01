@@ -16,6 +16,7 @@ export default function App() {
           title="CSS Basics"
           description="Style and layout your webpages with CSS. This lesson covers selectors, properties, the box model, and how to bring your designs to life."
           chip="Code"
+          price="$19"
           dueDate="Sep 1"
         />
         <LessonCard
@@ -23,6 +24,7 @@ export default function App() {
           title="JSX Basics"
           description="Turn your markup into reusable components"
           chip="Code"
+          price="$19"
           dueDate="Sep 15"
         />
       </section>
