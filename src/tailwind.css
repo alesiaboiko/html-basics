@@ -1,0 +1,67 @@
+/* ============================================
+   Tailwind — theme wiring only.
+
+   Preflight (Tailwind's base reset) is deliberately NOT imported:
+   it restyles button, h2 and friends, which would change how the
+   existing cards render. We import the theme and the utilities and
+   nothing else, so Tailwind coexists with style.css instead of
+   competing with it.
+
+   style.css is imported here into the `base` layer rather than from
+   main.jsx. The file itself is untouched — only where it sits in the
+   cascade changes. This matters: unlayered CSS outranks everything in
+   a @layer, so while style.css was unlayered its `* { padding: 0 }`
+   reset beat every p-* and m-* utility Tailwind generates, and those
+   utilities silently did nothing. Inside `base` they lose to
+   `utilities`, which is the order Tailwind expects.
+
+   Nothing renders differently today, because no component uses a
+   utility class yet.
+   ============================================ */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "../style.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* ============================================
+   Our tokens become Tailwind's theme.
+
+   Every key below points at a primitive from :root in style.css,
+   so there is exactly one place a value is written down. Change
+   --pink-700 there and bg-pink-700 follows.
+
+   Only names declared in @theme generate utilities — the rest of
+   our :root block is invisible to Tailwind.
+   ============================================ */
+@theme {
+  /* ---------- colour ---------- */
+  --color-white: var(--white);
+  --color-gray-50: var(--gray-50);
+  --color-gray-100: var(--gray-100);
+  --color-gray-400: var(--gray-400);
+  --color-gray-700: var(--gray-700);
+  --color-gray-900: var(--gray-900);
+  --color-pink-50: var(--pink-50);
+  --color-pink-700: var(--pink-700);
+  --color-pink-800: var(--pink-800);
+
+  /* ---------- spacing ----------
+     Our scale is a 4px step, and Tailwind computes p-<n> as
+     calc(var(--spacing) * n). So this single line reproduces every
+     --space-* value exactly, half steps included:
+       p-0.5 = 2px    p-1 = 4px     p-1.5 = 6px    p-2  = 8px
+       p-3.5 = 14px   p-4 = 16px    p-8   = 32px   p-11.5 = 46px
+     Tailwind's own default is 0.25rem, which only equals 4px while
+     the root font-size is 16px; pinning it to px keeps it matching
+     our px tokens under any root size. */
+  --spacing: 4px;
+
+  /* ---------- type families ----------
+     Named --font-sans / --font-mono / --font-title rather than
+     --font-ui / --font-code / --font-display: @theme writes into
+     :root, where those three names already live, and
+     `--font-ui: var(--font-ui)` is self-referential and discarded. */
+  --font-sans: var(--font-ui);
+  --font-mono: var(--font-code);
+  --font-title: var(--font-display);
+}

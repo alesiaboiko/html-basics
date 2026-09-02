@@ -18,6 +18,9 @@
   --gray-900: #1a1a1a;
   --pink-50: #fff0f6;
   --pink-700: #bd3770;
+  /* one step darker, derived rather than written down, so retuning
+     --pink-700 carries the hover shade with it */
+  --pink-800: color-mix(in srgb, var(--pink-700) 92%, #000);
   --black-a05: rgba(0, 0, 0, 0.05);
   --black-a07: rgba(0, 0, 0, 0.07);
 
@@ -317,41 +320,6 @@ main {
 }
 
 /* --- action --- */
-/* Two-name system: .button holds what every button shares, and the
-   variant class next to it supplies the colours. A button always
-   carries both, e.g. class="button button-primary". */
-.button {
-  width: 100%;
-  padding: var(--space-2);
-  /* buttons don't inherit the page font on their own */
-  font-family: var(--font-ui);
-  font-size: var(--text-sm);
-  line-height: var(--leading-sm);
-  border: 1px solid transparent;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-/* outline only — the quiet default */
-.button-ghost {
-  color: var(--text-primary);
-  background-color: var(--bg-primary);
-  border-color: var(--border-subtle);
-}
-
-/* the pink accent family, inverted from the chip: the chip puts deep pink
-   text on a pale pink fill, the button fills with the deep pink instead
-   and sets the text white */
-.button-primary {
-  color: var(--bg-primary);
-  background-color: var(--text-on-pink);
-  border-color: var(--text-on-pink);
-  transition: background-color 0.2s ease, border-color 0.2s ease;
-}
-
-/* on hover the pink deepens a little; color-mix derives the darker
-   shade from the token itself, so there is no second colour to keep in sync */
-.button-primary:hover {
-  background-color: color-mix(in srgb, var(--text-on-pink) 92%, #000);
-  border-color: color-mix(in srgb, var(--text-on-pink) 92%, #000);
-}
+/* The button moved to Tailwind utilities — see src/Button.jsx.
+   Its colours still come from these tokens, via the @theme mapping
+   in src/tailwind.css. Nothing to style here any more. */
