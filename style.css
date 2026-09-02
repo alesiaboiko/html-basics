@@ -1,26 +1,69 @@
 /* ============================================
    Design tokens — витягнуті з Figma (Systemizer)
+
+   Two layers:
+   1. Primitives — raw values on a scale. No meaning, no usage.
+      Never reference these outside this block.
+   2. Semantic — what the UI actually uses. Each one points at a
+      primitive, so a palette change happens in one place.
    ============================================ */
 :root {
+  /* ---------- 1. primitives ---------- */
+  /* colour */
+  --white: #ffffff;
+  --gray-50: #fafafa;
+  --gray-100: #f5f5f5;
+  --gray-400: #a4a2a2;
+  --gray-700: #575757;
+  --gray-900: #1a1a1a;
+  --pink-50: #fff0f6;
+  --pink-700: #bd3770;
+  --black-a05: rgba(0, 0, 0, 0.05);
+  --black-a07: rgba(0, 0, 0, 0.07);
+
+  /* spacing — 4px step, so the number is px / 4.
+     The -0-5 / -1-5 / -3-5 / -11-5 names are half steps. */
+  --space-0-5: 2px;
+  --space-1: 4px;
+  --space-1-5: 6px;
+  --space-2: 8px;
+  --space-3-5: 14px;
+  --space-4: 16px;
+  --space-8: 32px;
+  --space-11-5: 46px;
+
+  /* type scale — sizes and leadings. Note these are sizes, while the
+     --text-primary family below is colour. */
+  --text-xs: 7px;
+  --text-sm: 12px;
+  --text-md: 14px;
+  --text-xl: 32px;
+  --leading-none: 1;
+  --leading-normal: 1.5;
+  --leading-sm: 18px;
+  --leading-md: 21px;
+
+  /* ---------- 2. semantic ---------- */
   /* text */
-  --text-primary: #1a1a1a;
-  --text-secondary: #575757;
-  --text-tertiary: #a4a2a2;
-  --text-on-pink: #bd3770;
+  --text-primary: var(--gray-900);
+  --text-secondary: var(--gray-700);
+  --text-tertiary: var(--gray-400);
+  --text-on-pink: var(--pink-700);
 
   /* surfaces */
-  --bg-page: #fafafa;
-  --bg-primary: #ffffff;
-  --accent-info-pink: #fff0f6;
-  --border-subtle: #f5f5f5;
+  --bg-page: var(--gray-50);
+  --bg-primary: var(--white);
+  --accent-info-pink: var(--pink-50);
+  --accent-primary: var(--pink-700);
+  --border-subtle: var(--gray-100);
 
   /* card geometry */
   --card-width: 274px;
   --card-radius: 16px;
   --card-padding: 16px;
   --cover-radius: 10px;
-  --card-shadow: 0 2px 7.5px rgba(0, 0, 0, 0.05);
-  --card-shadow-hover: 0 6px 18px rgba(0, 0, 0, 0.07);
+  --card-shadow: 0 2px 7.5px var(--black-a05);
+  --card-shadow-hover: 0 6px 18px var(--black-a07);
 
   /* type */
   --font-ui: "Manrope", sans-serif;
@@ -52,10 +95,10 @@ main {
 
 .lessons {
   display: flex;
-  gap: 46px;
+  gap: var(--space-11-5);
   flex-wrap: wrap;
   justify-content: center;
-  padding: 32px;
+  padding: var(--space-8);
 }
 
 /* ============================================
@@ -70,7 +113,7 @@ main {
   box-shadow: var(--card-shadow);
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: var(--space-3-5);
   transition: box-shadow 0.2s ease;
 }
 
@@ -106,15 +149,15 @@ main {
   top: 28px;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: var(--space-0-5);
 }
 
 .cover-word {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 32px;
+  font-size: var(--text-xl);
   letter-spacing: -1px;
-  line-height: 1;
+  line-height: var(--leading-none);
   color: #ffffff;
 }
 
@@ -127,7 +170,7 @@ main {
 
 .cover-bars {
   display: flex;
-  gap: 2px;
+  gap: var(--space-0-5);
   align-items: center;
 }
 
@@ -160,8 +203,8 @@ main {
   background: #1e293b;
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 0 8px;
+  gap: var(--space-1);
+  padding: 0 var(--space-2);
 }
 
 .dot {
@@ -174,10 +217,10 @@ main {
 .dot-green  { background: #34d399; }
 
 .code-window-body {
-  padding: 6px 8px;
+  padding: var(--space-1-5) var(--space-2);
   font-family: var(--font-code);
-  font-size: 7px;
-  line-height: 1.5;
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
   color: #e2e8f0;
   white-space: pre;
 }
@@ -199,7 +242,7 @@ main {
   bottom: 6px;
   font-family: var(--font-code);
   font-weight: 700;
-  font-size: 14px;
+  font-size: var(--text-md);
   color: rgba(255, 255, 255, 0.13);
 }
 
@@ -218,7 +261,7 @@ main {
 .card-content {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--space-4);
   width: 100%;
   /* fill whatever height is left under the cover, so short cards
      line up with tall ones in the same row */
@@ -229,21 +272,21 @@ main {
 .card-info {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 0 4px;
+  gap: var(--space-1);
+  padding: 0 var(--space-1);
 }
 
 .card-title {
-  font-size: 14px;
+  font-size: var(--text-md);
   font-weight: 700;
-  line-height: 21px;
+  line-height: var(--leading-md);
   color: var(--text-primary);
 }
 
 .card-description {
-  font-size: 12px;
+  font-size: var(--text-sm);
   font-weight: 400;
-  line-height: 18px;
+  line-height: var(--leading-sm);
   color: var(--text-secondary);
 }
 
@@ -259,17 +302,17 @@ main {
 .chip {
   background-color: var(--accent-info-pink);
   color: var(--text-on-pink);
-  font-size: 12px;
-  line-height: 18px;
-  padding: 4px 8px;
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  padding: var(--space-1) var(--space-2);
   border-radius: 8px;
 }
 
 /* price sits between the chip and the due date, and reads the same way */
 .due-date,
 .price {
-  font-size: 12px;
-  line-height: 18px;
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
   color: var(--text-tertiary);
 }
 
@@ -279,11 +322,11 @@ main {
    carries both, e.g. class="button button-primary". */
 .button {
   width: 100%;
-  padding: 8px;
+  padding: var(--space-2);
   /* buttons don't inherit the page font on their own */
   font-family: var(--font-ui);
-  font-size: 12px;
-  line-height: 18px;
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
   border: 1px solid transparent;
   border-radius: 8px;
   cursor: pointer;
