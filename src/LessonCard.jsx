@@ -1,3 +1,6 @@
+import Chip from "./Chip.jsx";
+import Button from "./Button.jsx";
+
 /**
  * COVERS — everything that differs between the two card covers.
  *
@@ -66,13 +69,17 @@ const COVERS = {
  * @param description paragraph under the heading
  * @param chip        pink tag in the bottom-left, e.g. "Code"
  * @param dueDate     the date only, e.g. "Sep 1" — the "Due Date: " label lives here in the component
+ * @param price       e.g. "$19" — falls back to "Free" when the prop is left off
  * @param variant     "html" or "css" — picks the cover from COVERS above
+ * @param buttonVariant passed straight to the Start lesson Button: "primary" or "ghost"
+ *                      (named separately because `variant` above already means the cover)
+ * @param isDone      true for a finished lesson — fades the card and relabels the chip "Done"
  */
-export default function LessonCard({ title, description, chip, dueDate, variant }) {
+export default function LessonCard({ title, description, chip, dueDate, price = "Free", variant, buttonVariant = "ghost", isDone = false }) {
   const cover = COVERS[variant];
 
   return (
-    <article className="card">
+    <article className={isDone ? "card card-done" : "card"}>
       <div className={`card-cover ${cover.coverClass}`} role="img" aria-label={cover.label}>
         <div className="cover-title">
           <span className={cover.wordClass ? `cover-word ${cover.wordClass}` : "cover-word"}>
@@ -107,9 +114,11 @@ export default function LessonCard({ title, description, chip, dueDate, variant 
           <p className="card-description">{description}</p>
         </div>
         <div className="card-meta">
-          <span className="chip">{chip}</span>
+          <Chip label={isDone ? "Done" : chip} />
+          <span className="price">{price}</span>
           <span className="due-date">Due Date: {dueDate}</span>
         </div>
+        <Button variant={buttonVariant}>Start lesson</Button>
       </div>
     </article>
   );
