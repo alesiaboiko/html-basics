@@ -65,3 +65,72 @@
   --font-mono: var(--font-code);
   --font-title: var(--font-display);
 }
+
+/* ============================================
+   shadcn/ui — mapped onto our tokens, not its own palette.
+
+   Tailwind v4's `dark:` variant follows prefers-color-scheme by default.
+   Our dark mode is the .dark class on <html>, so it has to be redefined
+   or shadcn's dark: states would disagree with the rest of the page.
+   ============================================ */
+@custom-variant dark (&:is(.dark *));
+
+/* Every shadcn variable is one indirection away from a semantic token of
+   ours. That is also why there is no shadcn .dark block: style.css's
+   .dark already redefines the tokens underneath, and these re-resolve
+   with them. A second .dark here would be a duplicate palette. */
+:root {
+  --background: var(--bg-page);
+  --foreground: var(--text-primary);
+
+  --card: var(--bg-primary);
+  --card-foreground: var(--text-primary);
+
+  --popover: var(--bg-primary);
+  --popover-foreground: var(--text-primary);
+
+  --primary: var(--accent-primary);
+  /* deliberately the white primitive, not --bg-primary: this has to stay
+     white on the pink fill in dark mode too, and --bg-primary goes dark */
+  --primary-foreground: var(--white);
+
+  --secondary: var(--border-subtle);
+  --secondary-foreground: var(--text-primary);
+
+  --muted: var(--border-subtle);
+  --muted-foreground: var(--text-tertiary);
+
+  --accent: var(--accent-info-pink);
+  --accent-foreground: var(--text-on-pink);
+
+  --border: var(--border-subtle);
+  --input: var(--border-subtle);
+  --ring: var(--accent-primary);
+
+  --radius: var(--cover-radius);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) * 0.75);
+  --radius-md: calc(var(--radius) * 0.875);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.5);
+}
