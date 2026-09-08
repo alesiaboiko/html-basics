@@ -1,0 +1,120 @@
+/* ============================================
+   Tailwind v4 — wired to the Systemizer tokens
+   ============================================
+   Preflight is deliberately not imported: it restyles button, headings and
+   borders globally, and style.css is meant to keep rendering unchanged.
+   Add `@import "tailwindcss/preflight.css" layer(base);` below when migrating.
+
+   `@theme inline` is required, not cosmetic. Our primitives are named exactly
+   like Tailwind's own namespaces (--text-sm, --leading-none, --font-ui), so a
+   plain @theme would emit `--text-sm: var(--text-sm)` into :root — a self
+   reference that resolves to invalid. `inline` skips that emission and puts the
+   var() straight into each utility, leaving style.css the single source. */
+
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* ============================================
+   shadcn/ui semantic variables
+   ============================================
+   Every one is a var() alias to a Systemizer token — no second palette, no
+   literal colour values. Because they alias rather than copy, the `.dark`
+   block in style.css already drives them: redefining --accent-primary there
+   changes --primary here automatically. That is why shadcn needs no .dark
+   block of its own — there is nothing to duplicate and nothing to drift. */
+:root {
+  --background: var(--bg-page);
+  --foreground: var(--text-primary);
+
+  --card: var(--bg-primary);
+  --card-foreground: var(--text-primary);
+  --popover: var(--bg-primary);
+  --popover-foreground: var(--text-primary);
+
+  --primary: var(--accent-primary);
+  /* Light: #ffffff on #bd3770 = 4.9:1. Dark: #2b2b2b on #ff92bb = 6.8:1.
+     One alias, correct in both themes. */
+  --primary-foreground: var(--bg-primary);
+
+  --secondary: var(--border-subtle);
+  --secondary-foreground: var(--text-primary);
+
+  --muted: var(--border-subtle);
+  --muted-foreground: var(--text-tertiary);
+
+  --accent: var(--border-subtle);
+  --accent-foreground: var(--text-primary);
+
+  --border: var(--border-subtle);
+  --input: var(--border-subtle);
+  --ring: var(--accent-primary);
+
+  /* 10px — exactly shadcn's 0.625rem default */
+  --radius: var(--cover-radius);
+}
+
+@theme inline {
+  /* colour — drop Tailwind's palette, then map ours */
+  --color-*: initial;
+
+  /* shadcn semantic colours, so bg-primary / bg-input / ring-ring resolve */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-white: var(--white);
+  --color-gray-50: var(--gray-50);
+  --color-gray-100: var(--gray-100);
+  --color-gray-500: var(--gray-500);
+  --color-gray-700: var(--gray-700);
+  --color-gray-800: var(--gray-800);
+  --color-gray-900: var(--gray-900);
+  --color-pink-50: var(--pink-50);
+  --color-pink-700: var(--pink-700);
+
+  /* font family */
+  --font-ui: var(--font-ui);
+  --font-code: var(--font-code);
+  --font-display: var(--font-display);
+
+  /* font size — each paired with the line-height style.css uses with it, so
+     `text-sm` alone reproduces 12px/18px rather than Tailwind's default ratio */
+  --text-2xs: var(--text-2xs);
+  --text-2xs--line-height: var(--leading-normal);
+  --text-sm: var(--text-sm);
+  --text-sm--line-height: var(--leading-sm);
+  --text-md: var(--text-md);
+  --text-md--line-height: var(--leading-md);
+  --text-xl: var(--text-xl);
+  --text-xl--line-height: var(--leading-none);
+
+  /* line height */
+  --leading-none: var(--leading-none);
+  --leading-normal: var(--leading-normal);
+  --leading-sm: var(--leading-sm);
+  --leading-md: var(--leading-md);
+}
+
+@theme {
+  /* 4px base — reproduces the --space-* scale, p-0.5 (2px) … p-11.5 (46px) */
+  --spacing: 4px;
+}

@@ -8,84 +8,9 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&family=IBM+Plex+Mono:wght@400;500;700&family=Inter:wght@800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main>
-      <section class="lessons" aria-label="Lessons">
-        <!-- Lesson card: HTML -->
-        <article class="card">
-          <div class="card-cover cover-html" role="img" aria-label="HTML lesson cover">
-            <div class="cover-title">
-              <span class="cover-word gradient-html">HTML</span>
-              <span class="cover-bars">
-                <i class="bar bar-teal"></i><i class="bar bar-pink"></i><i class="bar bar-violet"></i>
-              </span>
-            </div>
-            <div class="code-window">
-              <div class="code-window-header">
-                <i class="dot dot-red"></i><i class="dot dot-yellow"></i><i class="dot dot-green"></i>
-              </div>
-              <pre class="code-window-body"><code><span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span>=<span class="tok-str">"container"</span><span class="tok-tag">&gt;</span>
-  <span class="tok-tag">&lt;h1&gt;</span>Lesson Title<span class="tok-tag">&lt;/h1&gt;</span>
-  <span class="tok-tag">&lt;p&gt;</span>Learn to code<span class="tok-tag">&lt;/p&gt;</span>
-<span class="tok-tag">&lt;/div&gt;</span></code></pre>
-            </div>
-            <span class="cover-ghost">&lt;/&gt;</span>
-            <div class="cover-strip strip-html"></div>
-          </div>
-          <div class="card-content">
-            <div class="card-info">
-              <h2 class="card-title">HTML Basics</h2>
-              <p class="card-description">
-                Learn the building blocks of the web with HTML. This lesson covers
-                elements, attributes, and how to structure a webpage from scratch.
-              </p>
-            </div>
-            <div class="card-meta">
-              <span class="chip">Code</span>
-              <span class="due-date">Due Date: Sep 1</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Lesson card: CSS -->
-        <article class="card">
-          <div class="card-cover cover-css" role="img" aria-label="CSS lesson cover">
-            <div class="cover-title">
-              <span class="cover-word">CSS</span>
-              <span class="cover-bars">
-                <i class="bar bar-blue"></i><i class="bar bar-violet"></i><i class="bar bar-cyan"></i>
-              </span>
-            </div>
-            <div class="code-window">
-              <div class="code-window-header">
-                <i class="dot dot-red"></i><i class="dot dot-yellow"></i><i class="dot dot-green"></i>
-              </div>
-              <pre class="code-window-body"><code><span class="tok-sel">.box</span> <span class="tok-plain">{</span>
-  <span class="tok-prop">color</span><span class="tok-plain">:</span> <span class="tok-val-green">#fff</span><span class="tok-plain">;</span>
-  <span class="tok-prop">display</span><span class="tok-plain">:</span> <span class="tok-val-pink">flex</span><span class="tok-plain">;</span>
-<span class="tok-plain">}</span></code></pre>
-            </div>
-            <span class="cover-ghost">{ }</span>
-            <div class="cover-strip strip-css"></div>
-          </div>
-          <div class="card-content">
-            <div class="card-info">
-              <h2 class="card-title">CSS Basics</h2>
-              <p class="card-description">
-                Style and layout your webpages with CSS. This lesson covers
-                selectors, properties, the box model, and how to bring your
-                designs to life.
-              </p>
-            </div>
-            <div class="card-meta">
-              <span class="chip">Code</span>
-              <span class="due-date">Due Date: Sep 1</span>
-            </div>
-          </div>
-        </article>
-      </section>
-    </main>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
